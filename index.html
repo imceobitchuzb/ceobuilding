@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEOBUILDING — Eksklyuziv Turar-Joy Majmuasi | Tashkent City</title>
+  
+  <!-- Шрифты Google Fonts: Space Grotesk, Syne, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@500;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Стили проекта -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-dark">
+
+  <!-- ========================================================================
+       ВЕРХНЯЯ ШАПКА САЙТА (HEADER — СТРОГО СБАЛАНСИРОВАННАЯ СЕТКА)
+       ======================================================================== -->
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <!-- 1. Логотип CEOBUILDING слева -->
+      <a href="#hero" class="brand-logo">
+        <span class="logo-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M3 21H21" stroke="#C86A3D" stroke-width="2" stroke-linecap="round"/>
+            <path d="M5 21V6L13 3V21" stroke="#FFFFFF" stroke-width="1.8"/>
+            <path d="M13 10L19 13V21" stroke="#C86A3D" stroke-width="1.8"/>
+            <circle cx="9" cy="8" r="1" fill="#FFFFFF"/>
+            <circle cx="9" cy="12" r="1" fill="#FFFFFF"/>
+            <circle cx="9" cy="16" r="1" fill="#FFFFFF"/>
+          </svg>
+        </span>
+        <div class="logo-text">
+          <span class="brand-title">CEOBUILDING</span>
+          <span class="brand-subtitle">RESIDENTIAL RESIDENCES</span>
+        </div>
+      </a>
+
+      <!-- 2. Основная навигация строго по центру -->
+      <nav class="main-nav" id="main-nav">
+        <a href="#concept" class="nav-item" data-i18n="nav_concept">KONSEPT</a>
+        <a href="#architecture" class="nav-item" data-i18n="nav_architecture">ARXITEKTURA</a>
+        <a href="#apartments" class="nav-item active-link" data-i18n="nav_apartments">KVARTIRALAR</a>
+        <a href="#floorplans" class="nav-item" data-i18n="nav_plans">PLANLAR</a>
+        <a href="#amenities" class="nav-item" data-i18n="nav_amenities">QULAYLIKLAR</a>
+        <a href="#gallery" class="nav-item" data-i18n="nav_gallery">GALEREYA</a>
+        <a href="#location" class="nav-item" data-i18n="nav_location">LOKATSIYA</a>
+        <a href="#timeline" class="nav-item" data-i18n="nav_timeline">BOSQICHLAR</a>
+        <a href="#contact" class="nav-item" data-i18n="nav_contact">ALOQA</a>
+      </nav>
+
+      <!-- 3. Действия и языки справа -->
+      <div class="header-actions">
+        <!-- Телефон -->
+        <a href="tel:+998712004488" class="phone-chip" title="Bog'lanish">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          <span>+998 71 200 44 88</span>
+        </a>
+
+        <!-- Переключатель языков UZ / RU / EN -->
+        <div class="lang-selector">
+          <button class="lang-btn active" data-lang="uz">UZ</button>
+          <button class="lang-btn" data-lang="ru">RU</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <!-- Главная кнопка выбора квартиры -->
+        <a href="#apartments" class="btn-primary-header">
+          <span data-i18n="btn_choose_apt">KVARTIRANI TANLASH</span>
+        </a>
+
+        <!-- Мобильное бургер-меню -->
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       1. СЕКЦИЯ HERO (РЕАЛЬНЫЙ АРХИТЕКТУРНЫЙ ФОН СО СТРОЙКОЙ И БАШНЯМИ)
+       ======================================================================== -->
+  <section class="section-hero" id="hero">
+    <!-- Фоновый визуальный слой с реальной архитектурной фотографией стройки -->
+    <div class="hero-backdrop">
+      <img 
+        src="assets/images/hero-construction.webp" 
+        alt="CEOBUILDING Tashkent City Construction" 
+        class="hero-bg-photo" 
+        id="hero-bg-image"
+        onerror="this.onerror=null; this.src='assets/images/reference-site.webp';"
+      />
+      <!-- Сбалансированный темный градиент для читаемости текста -->
+      <div class="hero-overlay-dark"></div>
+      <div class="hero-grid-lines"></div>
+    </div>
+
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="badge-beacon"></span>
+        <span data-i18n="hero_badge">TOSHKENT CITY // PREMIUM RESIDENTIAL RESIDENCES // 2026 ARCHITECTURE</span>
+      </div>
+
+      <h1 class="hero-heading">
+        <em data-i18n="hero_title_1">Biz hayratlanarli</em><br>
+        <span data-i18n="hero_title_2">makonlarni</span><br>
+        <span class="serif-accent" data-i18n="hero_title_3">loyihalashtiramiz.</span>
+      </h1>
+
+      <p class="hero-subtext" data-i18n="hero_desc">
+        Toshkent City markazidagi monumental arxitektura va zamonaviy hashamat uyg'unligi. 14 qavatli eksklyuziv bino, panoramik shisha fasad va shaxsiy xiyobonlar sizga qulaylikning yangi standartini taqdim etadi.
+      </p>
+
+      <!-- Главные призывы к действию -->
+      <div class="hero-actions-row">
+        <a href="#apartments" class="btn-hero-primary" id="hero-cta-apartments">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+          <span data-i18n="hero_btn_select">KVARTIRANI TANLASH</span>
+        </a>
+
+        <a href="#architecture" class="btn-hero-secondary">
+          <span data-i18n="hero_btn_explore">LOYIHA BILAN TANISHISH</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Архитектурные метрики объекта внизу первого экрана -->
+      <div class="hero-metrics-bar">
+        <div class="metric-item">
+          <span class="metric-num">14</span>
+          <span class="metric-label" data-i18n="metric_floors">Qavatlar soni</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-item">
+          <span class="metric-num">112</span>
+          <span class="metric-label" data-i18n="metric_residences">Rezidensiyalar</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-item">
+          <span class="metric-num">3.30 m</span>
+          <span class="metric-label" data-i18n="metric_ceiling">Shift balandligi</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-item">
+          <span class="metric-num">IV Ch. 2026</span>
+          <span class="metric-label" data-i18n="metric_handover">Topshirish muddati</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Тонкие координаты и высотная отметка справа (в стиле референса) -->
+    <div class="hero-coord-badge">
+      <span class="coord-label" data-i18n="hero_coords_title">OBYEKT KOORDINATALARI</span>
+      <span class="coord-val">41° 19' 36.4" N | 69° 14' 52.8" E</span>
+      <span class="coord-sub">Toshkent City, Lot-204 • Bal. +455.5m</span>
+    </div>
+
+    <div class="scroll-down-hint">
+      <span class="scroll-mouse"><span class="scroll-wheel"></span></span>
+      <span class="scroll-text" data-i18n="scroll_hint">PASTGA SILJITING</span>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       2. СЕКЦИЯ КОНЦЕПЦИИ (KONSEPT)
+       ======================================================================== -->
+  <section class="section-block" id="concept">
+    <div class="content-container">
+      <div class="section-header-tag">
+        <span class="tag-number">01</span>
+        <span class="tag-title" data-i18n="concept_tag">ARXITEKTURA FALSAFASI</span>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-lead">
+          <h2 class="section-title" data-i18n="concept_title">
+            Kelajak me'morchiligi va inson qulayligi birlashgan makon.
+          </h2>
+          <p class="section-description" data-i18n="concept_desc1">
+            CEOBUILDING — bu shunchaki bino emas, balki shahar markazida yashashning yangi falsafasidir. Biz monumental temir-beton karkasni energiya tejovchi panoramik oyna bilan birlashtirib, poytaxtning eng nufuzli manzilida osoyishta va xavfsiz muhit yaratdik.
+          </p>
+          <p class="section-description" data-i18n="concept_desc2">
+            Har bir xonadonda quyosh nuri, ovoz izolyatsiyasi va shamollatish tizimi 4D BIM muhandislik tahlillari asosida mukammallashtirilgan.
+          </p>
+        </div>
+
+        <div class="concept-cards-grid">
+          <div class="concept-card">
+            <span class="cc-number">01</span>
+            <h4 data-i18n="cc1_title">Monolit M450 & Seysmik 9.0</h4>
+            <p data-i18n="cc1_desc">9 ballik seysmik chidamlilikka ega mustahkam poydevor va quyma temir-beton karkas.</p>
+          </div>
+          <div class="concept-card">
+            <span class="cc-number">02</span>
+            <h4 data-i18n="cc2_title">Termo-shisha fasad</h4>
+            <p data-i18n="cc2_desc">Quyoshdan himoyalovchi va shovqinni 42 dB gacha kamaytiruvchi ikki kamerali shisha paketlar.</p>
+          </div>
+          <div class="concept-card">
+            <span class="cc-number">03</span>
+            <h4 data-i18n="cc3_title">Smart Building tizimi</h4>
+            <p data-i18n="cc3_desc">Xonadonlarda harorat, yoritish va xavfsizlikni smartfon orqali avtomatlashtirilgan boshqaruvi.</p>
+          </div>
+          <div class="concept-card">
+            <span class="cc-number">04</span>
+            <h4 data-i18n="cc4_title">Shaxsiy landshaft bog'i</h4>
+            <p data-i18n="cc4_desc">Faqatgina rezidentlar uchun mo'ljallangan yopiq yashil hovli, favvoralar va bolalar maydoni.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. СЕКЦИЯ 3D ЗДАНИЯ (ARXITEKTURA & INTERAKTIV MODEL)
+       ======================================================================== -->
+  <section class="section-block section-3d-showcase" id="architecture">
+    <div class="content-container">
+      <div class="section-header-tag">
+        <span class="tag-number">02</span>
+        <span class="tag-title" data-i18n="arch_tag">3D BINO VA QAVATLARNI KO'RISH</span>
+      </div>
+
+      <div class="showcase-header-row">
+        <div>
+          <h2 class="section-title" data-i18n="arch_title">Interaktiv 3D Arxitektura Modeli</h2>
+          <p class="section-description" data-i18n="arch_desc">
+            Binoning istalgan qavatini tanlang yoki 3D model ustiga bosing. Siz qavatlar balandligi, balkonlar va fasad konstruksiyasini har tomondan ko'rishingiz mumkin.
+          </p>
+        </div>
+
+        <!-- Кнопки режимов 3D камеры -->
+        <div class="camera-mode-pills">
+          <button class="cam-pill active" data-mode="exterior" id="btn-cam-exterior">
+            <span>EXTERIOR 3D</span>
+          </button>
+          <button class="cam-pill" data-mode="top" id="btn-cam-top">
+            <span>TOP VIEW</span>
+          </button>
+          <button class="cam-pill" data-mode="orbit" id="btn-cam-orbit">
+            <span>360° AYLANISH</span>
+          </button>
+          <button class="cam-pill" data-mode="cutaway" id="btn-cam-cutaway">
+            <span>RENTGEN (X-RAY)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3D Виджет Контейнер -->
+      <div class="building-3d-viewport">
+        <div id="building-3d-canvas"></div>
+
+        <!-- Плашка выбранного этажа в 3D -->
+        <div class="floor-3d-hud" id="floor-3d-hud">
+          <div class="fhud-badge">TANLANGAN QAVAT</div>
+          <div class="fhud-name" id="fhud-floor-name">12-qavat: Yuqori Rezidensiyalar</div>
+          <div class="fhud-info" id="fhud-floor-info">Shift: 3.30 m • 4 ta kvartira mavjud</div>
+          <button class="btn-fhud-jump" id="fhud-jump-btn" data-i18n="btn_view_floor_units">
+            USHBU QAVAT KVARTIRALARINI TANLASH &rarr;
+          </button>
+        </div>
+
+        <div class="canvas-instructions">
+          <span>Sichqoncha bilan 360° aylantiring • Qavat ustiga bosib tanlang</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. СЕКЦИЯ ВЫБОРА КВАРТИРЫ (KVARTIRALAR & INTERAKTIV SELEKTOR)
+       ======================================================================== -->
+  <section class="section-block section-apartments-sales" id="apartments">
+    <div class="content-container">
+      <div class="section-header-tag">
+        <span class="tag-number">03</span>
+        <span class="tag-title" data-i18n="selector_tag">ASOSIY TANLOV TIZIMI</span>
+      </div>
+
+      <div class="apartments-top-bar">
+        <div>
+          <h2 class="section-title" data-i18n="selector_title">Kvartira va Qavatni Tanlang</h2>
+          <p class="section-description" data-i18n="selector_desc">
+            Qavatlar ro'yxatidan kerakli qavatni belgilang, 2D reja chizmasidan kvartira ustiga bosing va narx, maydon hamda ipoteka hisob-kitobini o'rganing.
+          </p>
+        </div>
+
+        <div class="catalog-live-stats">
+          <div class="stat-pill">
+            <span class="stat-num" id="stat-available-count">53</span>
+            <span class="stat-label" data-i18n="stat_available">Mavjud xonadonlar</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num" id="stat-reserved-count">17</span>
+            <span class="stat-label" data-i18n="stat_reserved">Band qilingan</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Фильтры квартир -->
+      <div class="apartments-filters-bar">
+        <!-- Комнаты -->
+        <div class="filter-group">
+          <label class="filter-label" data-i18n="filter_rooms">Xonalar soni:</label>
+          <div class="rooms-chips" id="filter-rooms-chips">
+            <button class="room-chip active" data-rooms="all">Barchasi</button>
+            <button class="room-chip" data-rooms="1">1 xona</button>
+            <button class="room-chip" data-rooms="2">2 xona</button>
+            <button class="room-chip" data-rooms="3">3 xona</button>
+            <button class="room-chip" data-rooms="4">4+ / Penthouse</button>
+          </div>
+        </div>
+
+        <!-- Диапазон цены (млн сум) -->
+        <div class="filter-group">
+          <label class="filter-label" data-i18n="filter_price">Maksimal narx (mln UZS):</label>
+          <div class="range-wrap">
+            <input type="range" id="filter-price-range" min="500" max="3000" step="50" value="3000">
+            <span class="range-val" id="filter-price-val">3,000 mln</span>
+          </div>
+        </div>
+
+        <!-- Площадь -->
+        <div class="filter-group">
+          <label class="filter-label" data-i18n="filter_area">Maydoni (m²):</label>
+          <div class="range-wrap">
+            <input type="range" id="filter-area-range" min="40" max="160" step="5" value="160">
+            <span class="range-val" id="filter-area-val">160 m² gacha</span>
+          </div>
+        </div>
+
+        <!-- Только доступные -->
+        <div class="filter-group filter-checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="filter-available-only" checked>
+            <span data-i18n="filter_available_only">Faqat sotuvdagi kvartiralar</span>
+          </label>
+        </div>
+
+        <!-- Кнопка сброса -->
+        <button class="btn-reset-filters" id="btn-reset-filters" data-i18n="btn_reset_filters">
+          FILTRLARNI TOZALASH
+        </button>
+      </div>
+
+      <!-- ГЛАВНЫЙ ИНТЕРАКТИВНЫЙ БЛОК: ЭТАЖИ + ПЛАН + ДЕТАЛИ КВАРТИРЫ -->
+      <div class="apartments-interactive-layout">
+        
+        <!-- ЛЕВАЯ КОЛОНКА: ВЫБОР ЭТАЖА (14 -> 1) -->
+        <aside class="floor-selector-column">
+          <div class="fsc-header">
+            <span class="fsc-title" data-i18n="fsc_header">QAVATLARNI TANLASH</span>
+            <span class="fsc-total">14 ta qavat</span>
+          </div>
+          <div class="floor-buttons-list" id="floor-buttons-list">
+            <!-- Кнопки этажей генерируются скриптом (от 14 до 1) -->
+          </div>
+        </aside>
+
+        <!-- ЦЕНТРАЛЬНАЯ КОЛОНКА: ВЕКТОРНЫЙ ПОЭТАЖНЫЙ ПЛАН (FLOOR PLAN) -->
+        <main class="floorplan-main-view">
+          <div id="interactive-floorplan-container">
+            <!-- Сюда динамически рендерится SVG план этажа -->
+          </div>
+        </main>
+
+        <!-- ПРАВАЯ КОЛОНКА: КАРТОЧКА ДЕТАЛЕЙ ВЫБРАННОЙ КВАРТИРЫ -->
+        <aside class="apartment-details-sidebar" id="apartment-details-card">
+          <div class="apt-card-empty" id="apt-card-placeholder">
+            <div class="empty-icon">🏢</div>
+            <h4 data-i18n="apt_select_prompt">Kvartirani tanlang</h4>
+            <p data-i18n="apt_select_prompt_sub">Planing ustidagi istalgan xonadon ustiga bosing va to'liq ma'lumotni oling.</p>
+          </div>
+
+          <div class="apt-card-content hidden" id="apt-card-data">
+            <!-- Фото-превью фасада / планировки -->
+            <div class="apt-card-preview-thumb">
+              <img src="assets/images/tower-facade.webp" alt="Tower Facade" class="apt-thumb-img" id="card-thumb-img">
+              <div class="apt-thumb-overlay">
+                <span class="apt-status-badge available" id="card-status-badge">MAVJUD</span>
+                <span class="apt-code" id="card-number">A-1204</span>
+              </div>
+            </div>
+
+            <h3 class="apt-title-rooms" id="card-rooms-title">2 xonali Rezidensiya</h3>
+
+            <div class="apt-params-grid">
+              <div class="param-box">
+                <span class="param-l" data-i18n="param_floor">Qavat:</span>
+                <span class="param-v" id="card-floor">12-qavat</span>
+              </div>
+              <div class="param-box">
+                <span class="param-l" data-i18n="param_area">Umumiy maydon:</span>
+                <span class="param-v" id="card-area">68.0 m²</span>
+              </div>
+              <div class="param-box">
+                <span class="param-l" data-i18n="param_balcony">Balkon / Terrasa:</span>
+                <span class="param-v" id="card-balcony">5.0 m²</span>
+              </div>
+              <div class="param-box">
+                <span class="param-l" data-i18n="param_ceiling">Shift balandligi:</span>
+                <span class="param-v" id="card-ceiling">3.30 m</span>
+              </div>
+            </div>
+
+            <div class="apt-view-info">
+              <span class="view-label" data-i18n="param_view">Derazadan ko'rinish:</span>
+              <span class="view-val" id="card-view">Yashil xiyobon va hovli</span>
+            </div>
+
+            <div class="apt-price-block">
+              <div class="price-row">
+                <span class="price-label" data-i18n="param_price">Kvartira narxi:</span>
+                <span class="price-val" id="card-price">1,074,400,000 UZS</span>
+              </div>
+              <div class="price-meter-row">
+                <span class="pm-label">1 m² uchun:</span>
+                <span class="pm-val" id="card-meter-price">15,800,000 UZS/m²</span>
+              </div>
+            </div>
+
+            <!-- Экспресс-калькулятор ипотеки/рассрочки -->
+            <div class="apt-mortgage-box">
+              <div class="mb-header">
+                <span class="mb-title" data-i18n="mortgage_title">Ipoteka & To'lov rejasi</span>
+                <span class="mb-sub">30% dastlabki to'lov</span>
+              </div>
+              <div class="mb-payment-line">
+                <span class="mb-amount" id="card-monthly-payment">13,070,000 UZS</span>
+                <span class="mb-per">/ oyiga (10 yil)</span>
+              </div>
+            </div>
+
+            <!-- Действия -->
+            <div class="apt-actions-col">
+              <button class="btn-primary full-width" id="btn-inquire-selected">
+                <span data-i18n="btn_book_apt">USHBU KVARTIRANI BAND QILISH</span>
+              </button>
+              <button class="btn-ghost full-width" id="btn-view-blueprint">
+                <span data-i18n="btn_view_blueprint">2D ARXITEKTURA CHIZMASI</span>
+              </button>
+            </div>
+
+            <span class="demo-data-note">* Narxlar va ko'rsatkichlar namunaviy (demo) hisoblanadi.</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. СЕКЦИЯ ПЛАНИРОВОК (PLANLAR & ARXITEKTURA KESIMLARI)
+       ======================================================================== -->
+  <section class="section-block" id="floorplans">
+    <div class="content-container">
+      <div class="section-header-tag">
+        <span class="tag-number">04</span>
+        <span class="tag-title" data-i18n="plans_tag">NAMUNAVIY PLANLAR</span>
+      </div>
+
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title" data-i18n="plans_title">Funktsional va Qulay Planlar</h2>
+          <p class="section-description" data-i18n="plans_desc">
+            Har bir metr kvadrat unumli foydalanilgan. Keng mehmonxona, shinam yotoqxonalar va panoramik oynali balkonlar.
+          </p>
+        </div>
+
+        <div class="plan-type-tabs" id="plan-type-tabs">
+          <button class="plan-tab" data-type="1b">1 XONALI (44.5 m²)</button>
+          <button class="plan-tab active" data-type="2b">2 XONALI (64.2 m²)</button>
+          <button class="plan-tab" data-type="3b">3 XONALI (88.6 m²)</button>
+          <button class="plan-tab" data-type="ph">SKY PENTHOUSE (146.5 m²)</button>
+        </div>
+      </div>
+
+      <div class="featured-plan-display" id="featured-plan-display">
+        <!-- Динамическая плашка выбранной планировки -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. СЕКЦИЯ ИНФРАСТРУКТУРЫ (QULAYLIKLAR)
+       ======================================================================== -->
+  <section class="section-block" id="amenities">
+    <div class="content-container">
+      <div class="section-header-tag">
+        <span class="tag-number">05</span>
+        <span class="tag-title" data-i18n="amenities_tag">INFRATUZILMA VA SERVIS</span>
+      </div>
+
+      <h2 class="section-title" data-i18n="amenities_title">Besh Yulduzli Qulayliklar Standarti</h2>
+      <p class="section-description" data-i18n="amenities_desc">
+        CEOBUILDING rezidensiyalarida yashash barcha kundalik ehtiyojlaringizni bino hududidan chiqmasdan qondirish imkonini beradi.
+      </p>
+
+      <div class="amenities-grid">
+        <div class="amenity-card">
+          <div class="am-icon">🛎️</div>
+          <h4 data-i18n="am1_title">24/7 Grand Concierge</h4>
+          <p data-i18n="am1_desc">Rezidentlar xizmatidagi shaxsiy konsyerj, mehmonlarni kutib olish va bron qilish xizmati.</p>
+        </div>
+        <div class="amenity-card">
+          <div class="am-icon">🚗</div>
+          <h4 data-i18n="am2_title">2 Qavatli Avtoturargoh</h4>
+          <p data-i18n="am2_desc">Elektromobillar uchun zaryadlash stansiyalari va avtomatlashtirilgan raqamni aniqlash tizimi.</p>
+        </div>
+        <div class="amenity-card">
+          <div class="am-icon">🏊</div>
+          <h4 data-i18n="am3_title">Wellness & Spa Majmuasi</h4>
+          <p data-i18n="am3_desc">25 metrli yopiq panoramik basseyn, fin saunasi va zamonaviy TechnoGym trenajyor zali.</p>
+        </div>
+        <div class="amenity-card">
+          <div class="am-icon">🌳</div>
+          <h4 data-i18n="am4_title">Yopiq Yapon Bog'i</h4>
+          <p data-i18n="am4_desc">Mashinalardan xoli xavfsiz ichki hovli, favvoralar va bolalar uchun rivojlantiruvchi maydoncha.</p>
+        </div>
+        <div class="amenity-card">
+          <div class="am-icon">🛗</div>
+          <h4 data-i18n="am5_title">Tezyurar Otis Liftlari</h4>
+          <p data-i18n="am5_desc">Sekundiga 2.5 metr tezlikda harakatlanuvchi shovqinsiz va shaxsiy kartochkali liftlar.</p>
+        </div>
+        <div class="amenity-card">
+          <div class="am-icon">🛡️</div>
+          <h4 data-i18n="am6_title">Ko'p Bosqichli Xavfsizlik</h4>
+          <p data-i18n="am6_desc">Yuzni aniqlash Face-ID tizimi, 24/7 video-kuzatuv va xususiy qorovullik xizmati.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. СЕКЦИЯ ГАЛЕРЕИ И РЕАЛЬНОГО ОКРУЖЕНИЯ СТРОЙКИ (GALEREYA)
+       ======================================================================== -->
+  <section class="section-block" id="gallery">
+    <div class="content-container">
+      <div class="section-header-tag">
+        <span class="tag-number">06</span>
+        <span class="tag-title" data-i18n="gallery_tag">QURILISH VA ARXITEKTURA GALEREYASI</span>
+      </div>
+
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title" data-i18n="gallery_title">Loyiha Fotoxronikasi va Vizualizatsiyasi</h2>
+          <p class="section-description" data-i18n="gallery_desc">
+            Qurilish maydonidagi real ish jarayonlari, kranlar, monolit poydevor va bo'lajak hashamatli interyerlar bilan tanishing.
+          </p>
+        </div>
+
+        <!-- Фильтры галереи -->
+        <div class="gallery-filter-tabs" id="gallery-filter-tabs">
+          <button class="g-tab active" data-filter="all" data-i18n="gtab_all">Barchasi</button>
+          <button class="g-tab" data-filter="site" data-i18n="gtab_site">Qurilish maydoni</button>
+          <button class="g-tab" data-filter="facade" data-i18n="gtab_facade">Fasad va bino</button>
+          <button class="g-tab" data-filter="interior" data-i18n="gtab_interior">Interyer & Bog'</button>
+        </div>
+      </div>
+
+      <!-- Сетка фотографий проекта -->
+      <div class="gallery-grid" id="gallery-grid">
+        <div class="gallery-item" data-category="site">
+          <img src="assets/images/hero-construction.webp" alt="Construction Site" loading="lazy">
+          <div class="gi-overlay">
+            <span class="gi-badge" data-i18n="g_site_badge">QURILISH MAYDONI</span>
+            <h4 data-i18n="g1_title">Monolit Karkas va Minora Kranlar</h4>
+            <p data-i18n="g1_sub">Toshkent City markazidagi 14 qavatli majmua qurilishi</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="facade">
+          <img src="assets/images/tower-facade.webp" alt="Tower Facade" loading="lazy">
+          <div class="gi-overlay">
+            <span class="gi-badge" data-i18n="g_facade_badge">FASAD</span>
+            <h4 data-i18n="g2_title">Panoramik Oynali Fasad</h4>
+            <p data-i18n="g2_sub">Ikki kamerali termo-shisha va bronza kompozit panellar</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="site">
+          <img src="assets/images/site-cranes.webp" alt="Excavation and Cranes" loading="lazy">
+          <div class="gi-overlay">
+            <span class="gi-badge" data-i18n="g_site_badge">MONOLIT</span>
+            <h4 data-i18n="g3_title">Poydevor va Qavatlar Quyilishi</h4>
+            <p data-i18n="g3_sub">B40 mustahkam beton va A500C armatura konstruksiyalari</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="interior">
+          <img src="assets/images/luxury-lobby.webp" alt="Grand Lobby" loading="lazy">
+          <div class="gi-overlay">
+            <span class="gi-badge" data-i18n="g_interior_badge">INTERYER</span>
+            <h4 data-i18n="g4_title">24/7 Grand Concierge Lobbisi</h4>
+            <p data-i18n="g4_sub">Marmar qoplamalar, iliq me'moriy yoritish va kutish zallari</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="interior">
+          <img src="assets/images/courtyard-park.webp" alt="Courtyard Park" loading="lazy">
+          <div class="gi-overlay">
+            <span class="gi-badge" data-i18n="g_interior_badge">HOVLI</span>
+            <h4 data-i18n="g5_title">Shaxsiy Yapon Bog'i va Favvoralar</h4>
+            <p data-i18n="g5_sub">Mashinasiz xavfsiz hovli va rezidentlar saylgohi</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="facade">
+          <img src="assets/images/penthouse-terrace.webp" alt="Sky Penthouse" loading="lazy">
+          <div class="gi-overlay">
+            <span class="gi-badge" data-i18n="g_facade_badge">PENTHOUSE</span>
+            <h4 data-i18n="g6_title">Sky Penthouse Ochiq Terrasasi</h4>
+            <p data-i18n="g6_sub">14-qavatdan shahar va bog'ning 360° panoramik manzarasi</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. СЕКЦИЯ ЛОКАЦИИ (LOKATSIYA)
+       ======================================================================== -->
+  <section class="section-block" id="location">
+    <div class="content-container">
+      <div class="section-header-tag">
+        <span class="tag-number">07</span>
+        <span class="tag-title" data-i18n="location_tag">STRATEGIK JOYLASHUV</span>
+      </div>
+
+      <div class="location-layout">
+        <div class="location-lead">
+          <h2 class="section-title" data-i18n="location_title">Toshkent City: Poytaxtning Eng Nufuzli Manzili</h2>
+          <p class="section-description" data-i18n="location_desc">
+            Bino Toshkent shahrining ishbilarmonlik va madaniy markazida joylashgan bo'lib, eng yaxshi parklar, biznes markazlar va restoranlarga bir necha daqiqalik piyoda masofada.
+          </p>
+
+          <div class="poi-list">
+            <div class="poi-item">
+              <span class="poi-time">2 daqiqa</span>
+              <div class="poi-info">
+                <h5>Tashkent City Park & Musiqiy Favvora</h5>
+                <p>Piyoda masofadagi sayr va dam olish xiyoboni</p>
+              </div>
+            </div>
+            <div class="poi-item">
+              <span class="poi-time">4 daqiqa</span>
+              <div class="poi-info">
+                <h5>Hilton Tashkent & Congress Hall</h5>
+                <p>Xalqaro tadbirlar va premium restoranlar majmuasi</p>
+              </div>
+            </div>
+            <div class="poi-item">
+              <span class="poi-time">5 daqiqa</span>
+              <div class="poi-info">
+                <h5>"Paxtakor" & "Alisher Navoiy" Metrolari</h5>
+                <p>Shahar bo'ylab tezkor va qulay transport bog'liqligi</p>
+              </div>
+            </div>
+            <div class="poi-item">
+              <span class="poi-time">12 daqiqa</span>
+              <div class="poi-info">
+                <h5>Islom Karimov nomidagi Xalqaro Aeroport</h5>
+                <p>Avtomobilda to'g'ridan-to'g'ri qulay yo'nalish</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="location-map-card">
+          <div class="map-blueprint-box">
+            <div class="map-grid-bg"></div>
+            <svg class="map-svg-vector" viewBox="0 0 500 380">
+              <!-- Стилизованная архитектурная карта улиц -->
+              <line x1="50" y1="190" x2="450" y2="190" stroke="#334155" stroke-width="8"/>
+              <line x1="250" y1="50" x2="250" y2="330" stroke="#334155" stroke-width="8"/>
+              <line x1="120" y1="50" x2="120" y2="330" stroke="#1E293B" stroke-width="4"/>
+              <line x1="380" y1="50" x2="380" y2="330" stroke="#1E293B" stroke-width="4"/>
+              
+              <!-- Зона парка -->
+              <rect x="270" y="70" width="160" height="100" rx="8" fill="rgba(46,125,91,0.2)" stroke="#2E7D5B" stroke-width="1.5"/>
+              <text x="350" y="125" text-anchor="middle" font-size="10" fill="#2E7D5B" font-family="'Space Grotesk', sans-serif">TASHKENT CITY PARK</text>
+
+              <!-- Точка CEOBUILDING -->
+              <circle cx="230" cy="170" r="14" fill="rgba(200,106,61,0.25)"/>
+              <circle cx="230" cy="170" r="7" fill="#C86A3D"/>
+              <text x="230" y="145" text-anchor="middle" font-size="11" font-weight="700" fill="#FFF" font-family="'Space Grotesk', sans-serif">CEOBUILDING</text>
+              <text x="230" y="158" text-anchor="middle" font-size="8" fill="#C86A3D" font-family="monospace">LOT 204</text>
+            </svg>
+          </div>
+          <div class="map-footer-bar">
+            <span>Manzil: Toshkent sh., Shayxontohur tumani, Botir Zokirov ko'chasi, 2-uy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       9. СЕКЦИЯ ЭТАПОВ СТРОИТЕЛЬСТВА (BOSQICHLAR & TIMELINE)
+       ======================================================================== -->
+  <section class="section-block" id="timeline">
+    <div class="content-container">
+      <div class="section-header-tag">
+        <span class="tag-number">08</span>
+        <span class="tag-title" data-i18n="timeline_tag">QURILISH JARAYONI VA MUDDATLAR</span>
+      </div>
+
+      <h2 class="section-title" data-i18n="timeline_title">Qurilish Bosqichlari va Tayyorlik Holati</h2>
+      <p class="section-description" data-i18n="timeline_desc">
+        Barcha qurilish ishlari xalqaro sifat standartlariga muvofiq o'z vaqtida bajarilmoqda. Quyida amaldagi bosqichlar keltirilgan.
+      </p>
+
+      <div class="timeline-stepper">
+        <div class="t-step done">
+          <span class="t-num">01</span>
+          <div class="t-content">
+            <span class="t-badge-done">100% YAKUNLANDI</span>
+            <h5 data-i18n="t1_title">Kotlovan va Poydevor</h5>
+            <p data-i18n="t1_desc">12 metrli temir-beton svayalar va B40 monolit plita quyildi.</p>
+          </div>
+        </div>
+
+        <div class="t-step done">
+          <span class="t-num">02</span>
+          <div class="t-content">
+            <span class="t-badge-done">100% YAKUNLANDI</span>
+            <h5 data-i18n="t2_title">Monolit Karkas Qavatlar</h5>
+            <p data-i18n="t2_desc">14 qavatli bino karkasi va ustunlar to'liq qad rostladi.</p>
+          </div>
+        </div>
+
+        <div class="t-step current">
+          <span class="t-num">03</span>
+          <div class="t-content">
+            <span class="t-badge-active">85% AMALDA</span>
+            <h5 data-i18n="t3_title">Fasad va Oynalash</h5>
+            <p data-i18n="t3_desc">Termo-izolyatsiyalangan oynaviy konstruksiyalar montaji.</p>
+          </div>
+        </div>
+
+        <div class="t-step pending">
+          <span class="t-num">04</span>
+          <div class="t-content">
+            <span class="t-badge-pending">55% AMALDA</span>
+            <h5 data-i18n="t4_title">Ichki Muhandislik va Pardoz</h5>
+            <p data-i18n="t4_desc">Liftlar, ventilyatsiya, elektr va vestibyul marmar qoplamalari.</p>
+          </div>
+        </div>
+
+        <div class="t-step final">
+          <span class="t-num">05</span>
+          <div class="t-content">
+            <span class="t-badge-final">IV CHORAK 2026</span>
+            <h5 data-i18n="t5_title">Kalitlarni Topshirish</h5>
+            <p data-i18n="t5_desc">Majmuani foydalanishga topshirish va rezidentlarni ko'chishi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       10. СЕКЦИЯ КОНТАКТОВ И ОФИСА ПРОДАЖ (ALOQA)
+       ======================================================================== -->
+  <section class="section-block section-contact-area" id="contact">
+    <div class="content-container">
+      <div class="section-header-tag">
+        <span class="tag-number">09</span>
+        <span class="tag-title" data-i18n="contact_tag">SOTUV BO'LIMI VA BOG'LANISH</span>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-col">
+          <h2 class="section-title" data-i18n="contact_title">Orzungizdagi Rezidensiyani Tanlang</h2>
+          <p class="section-description" data-i18n="contact_desc">
+            Mutaxassislarimiz sizga loyiha, narxlar, to'lov shartlari va ipoteka dasturlari bo'yicha to'liq ma'lumot beradi.
+          </p>
+
+          <div class="contact-details-box">
+            <div class="cd-row">
+              <span class="cd-icon">📞</span>
+              <div>
+                <span class="cd-label">Telefon:</span>
+                <a href="tel:+998712004488" class="cd-link">+998 71 200 44 88</a>
+              </div>
+            </div>
+
+            <div class="cd-row">
+              <span class="cd-icon">📍</span>
+              <div>
+                <span class="cd-label">Sotuv ofisi:</span>
+                <span class="cd-text">Toshkent sh., Shayxontohur tumani, Tashkent City, Lot-204</span>
+              </div>
+            </div>
+
+            <div class="cd-row">
+              <span class="cd-icon">⏰</span>
+              <div>
+                <span class="cd-label">Ish vaqti:</span>
+                <span class="cd-text">Dushanba - Yakshanba: 09:00 dan 20:00 gacha</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Форма заявки -->
+        <div class="contact-form-card">
+          <h3 class="cf-title" data-i18n="form_title">Bepul Maslahat va Bron Qilish</h3>
+          <p class="cf-desc" data-i18n="form_desc">Telefon raqamingizni qoldiring, mutaxassisimiz 15 daqiqada bog'lanadi.</p>
+
+          <form id="main-inquiry-form" class="inquiry-form">
+            <div class="form-group">
+              <label for="form-user-name" data-i18n="label_name">Ismingiz *</label>
+              <input type="text" id="form-user-name" required placeholder="Masalan: Jamshid Karimov">
+            </div>
+
+            <div class="form-group">
+              <label for="form-user-phone" data-i18n="label_phone">Telefon raqamingiz *</label>
+              <input type="tel" id="form-user-phone" required placeholder="+998 (90) 123-45-67">
+            </div>
+
+            <div class="form-group">
+              <label for="form-selected-apt" data-i18n="label_unit">Tanlangan kvartira (agar mavjud bo'lsa):</label>
+              <input type="text" id="form-selected-apt" readonly value="A-1204 (2 xonali, 68.0 m²)">
+            </div>
+
+            <div class="form-group">
+              <label for="form-user-lang" data-i18n="label_lang">Muloqot tili:</label>
+              <select id="form-user-lang">
+                <option value="uz">O'zbek tili</option>
+                <option value="ru">Русский язык</option>
+                <option value="en">English</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-primary full-width" id="btn-submit-form">
+              <span data-i18n="btn_submit">YUBORISH VA HISOB-KITOB OLISH</span>
+            </button>
+          </form>
+
+          <div class="form-status-alert hidden" id="form-status-box"></div>
+          <p class="demo-disclaimer">* Bu namoyish versiyasi bo'lib, zayavka simulyatsiya tarzida qabul qilinadi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       11. ФУТЕР (FOOTER)
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="content-container">
+      <div class="footer-top-row">
+        <div class="footer-brand">
+          <span class="fb-title">CEOBUILDING</span>
+          <span class="fb-sub">PREMIUM RESIDENTIAL REAL ESTATE</span>
+          <p class="fb-desc">Toshkent City markazidagi yangi avlod eksklyuziv turar-joy majmuasi.</p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5>Bo'limlar</h5>
+          <a href="#concept">Konsept</a>
+          <a href="#architecture">3D Arxitektura</a>
+          <a href="#apartments">Kvartiralar tanlovi</a>
+          <a href="#amenities">Qulayliklar</a>
+          <a href="#gallery">Galereya</a>
+          <a href="#location">Joylashuv</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5>Aloqa</h5>
+          <span>+998 71 200 44 88</span>
+          <span>info@ceobuilding.uz</span>
+          <span>Tashkent City, Lot-204</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <span>&copy; 2026 CEOBUILDING Residences. Barcha huquqlar himoyalangan.</span>
+        <span class="demo-tag">DEMONSTRATION REAL ESTATE SUITE // UZBEKISTAN</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       МОДАЛЬНОЕ ОКНО ДЕТАЛИЗИРОВАННОГО 2D ЧЕРТЕЖА (BLUEPRINT MODAL)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="blueprint-modal">
+    <div class="modal-dialog blueprint-dialog">
+      <button class="modal-close" id="btn-close-blueprint" aria-label="Close">&times;</button>
+      <div id="blueprint-modal-body">
+        <!-- Сюда динамически рендерится 2D CAD чертеж выбранной квартиры -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ЛОКАЛЬНЫЕ БИБЛИОТЕКИ (100% надежная оффлайн работа) -->
+  <script src="js/libs/three.min.js"></script>
+  <script src="js/libs/OrbitControls.js"></script>
+  <script src="js/libs/gsap.min.js"></script>
+
+  <!-- СКРИПТЫ ПРОЕКТА -->
+  <script src="js/apartments-data.js"></script>
+  <script src="js/floorplan-renderer.js"></script>
+  <script src="js/three-app.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
