@@ -140,18 +140,18 @@ class Residential3DBuilding {
         roughness: 0.35,
         metalness: 0.8
       }),
-      // Подсветка активного выбранного этажа
+      // Подсветка активного выбранного этажа (архитектурная бронза)
       selectedFloorGlow: new THREE.MeshBasicMaterial({
-        color: 0xc86a3d,
+        color: 0x8c7355,
         wireframe: true,
         transparent: true,
-        opacity: 0.85
+        opacity: 0.95
       }),
-      // Ховер этажа
+      // Ховер этажа (мягкий алебастровый свет)
       hoverFloorGlow: new THREE.MeshBasicMaterial({
-        color: 0x00e5ff,
+        color: 0xeae7e0,
         transparent: true,
-        opacity: 0.25
+        opacity: 0.28
       }),
       // Земля и благоустройство
       plazaGround: new THREE.MeshStandardMaterial({

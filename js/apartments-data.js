@@ -1,31 +1,31 @@
 /* ==========================================================================
-   CEOBUILDING — APARTMENTS & RESIDENTIAL REAL ESTATE CATALOG DATA
-   Contains structured data for 14 floors, ~90 apartment units,
-   architectural floor plans, pricing, mortgage calculations & filters.
-   (Marked clearly as Demonstration Data for CEOBUILDING)
+   CEOBUILDING — КАТАЛОГ РЕЗИДЕНЦИЙ И АРХИТЕКТУРНЫХ ПЛАНИРОВОК
+   Структурированная база данных: 14 этажей, 87 резиденций,
+   расчет стоимости, ипотеки и планировочные решения.
+   Поддержка двух языков: Русский (RU) и Английский (EN).
    ========================================================================== */
 
 const APARTMENTS_CATALOG = (() => {
-  // Базовая стоимость квадратного метра по этажам (в сумах)
-  // Чем выше этаж, тем более панорамный вид
+  // Базовая ставка стоимости квадратного метра (в узбекских сумах UZS)
+  // Верхние этажи и пентхаусы имеют повышенную стоимость из-за панорамных видов
   const getBaseMeterPrice = (floor) => {
-    if (floor === 14) return 18500000; // Пентхаусы
+    if (floor === 14) return 18500000; // Sky Penthouses
     if (floor >= 10) return 15800000; // Верхние этажи
-    if (floor >= 5) return 14200000;  // Средние этажи
+    if (floor >= 5)  return 14200000; // Средние этажи
     return 13200000;                  // Нижние этажи
   };
 
-  // Шаблоны планировок квартир на типовом этаже (2–13)
+  // Типовые планировочные решения для жилых этажей (со 2 по 13 этаж)
   const typicalUnitTemplates = [
     {
       unitSuffix: '01',
       rooms: 2,
       area: 64.2,
-      viewUz: "Tashkent City bog'i",
-      viewRu: "Парк Tashkent City",
-      viewEn: "Tashkent City Park",
       balconyArea: 4.8,
-      planSvgId: 'plan-2b-a',
+      view: {
+        ru: "Парк Tashkent City и фонтаны",
+        en: "Tashkent City Central Park & Fountains"
+      },
       roomsBreakdown: {
         living: 22.4,
         bedroom1: 16.8,
@@ -38,11 +38,11 @@ const APARTMENTS_CATALOG = (() => {
       unitSuffix: '02',
       rooms: 1,
       area: 44.5,
-      viewUz: "Shahar panoramasi (Sharq)",
-      viewRu: "Панорама города (Восток)",
-      viewEn: "City Panorama (East)",
       balconyArea: 3.5,
-      planSvgId: 'plan-1b-a',
+      view: {
+        ru: "Восточная панорама города",
+        en: "Eastern City Skyline"
+      },
       roomsBreakdown: {
         living: 18.5,
         bedroom1: 0,
@@ -55,11 +55,11 @@ const APARTMENTS_CATALOG = (() => {
       unitSuffix: '03',
       rooms: 3,
       area: 88.6,
-      viewUz: "Tashkent City markazi va favvora",
-      viewRu: "Центр Tashkent City и фонтан",
-      viewEn: "Tashkent City Center & Fountain",
       balconyArea: 6.2,
-      planSvgId: 'plan-3b-a',
+      view: {
+        ru: "Центральный бульвар и парк",
+        en: "Central Boulevard & Park Panorama"
+      },
       roomsBreakdown: {
         living: 28.0,
         bedroom1: 18.2,
@@ -73,11 +73,11 @@ const APARTMENTS_CATALOG = (() => {
       unitSuffix: '04',
       rooms: 2,
       area: 68.0,
-      viewUz: "Yashil xiyobon va hovli",
-      viewRu: "Зеленый бульвар и двор",
-      viewEn: "Green Boulevard & Courtyard",
       balconyArea: 5.0,
-      planSvgId: 'plan-2b-b',
+      view: {
+        ru: "Приватный тихий японский сад",
+        en: "Quiet Private Courtyard Garden"
+      },
       roomsBreakdown: {
         living: 24.0,
         bedroom1: 17.5,
@@ -90,11 +90,11 @@ const APARTMENTS_CATALOG = (() => {
       unitSuffix: '05',
       rooms: 1,
       area: 48.2,
-      viewUz: "Ichki sokin hovli bog'i",
-      viewRu: "Тихий внутренний сад",
-      viewEn: "Quiet Courtyard Garden",
       balconyArea: 3.8,
-      planSvgId: 'plan-1b-b',
+      view: {
+        ru: "Внутренний зеленый атриум",
+        en: "Interior Green Atrium"
+      },
       roomsBreakdown: {
         living: 20.2,
         bedroom1: 0,
@@ -107,11 +107,11 @@ const APARTMENTS_CATALOG = (() => {
       unitSuffix: '06',
       rooms: 3,
       area: 92.4,
-      viewUz: "Janubiy quyoshli panorama",
-      viewRu: "Южная солнечная панорама",
-      viewEn: "Southern Sunny Panorama",
       balconyArea: 7.0,
-      planSvgId: 'plan-3b-b',
+      view: {
+        ru: "Южная солнечная сторона и аллея",
+        en: "Southern Sunlit Promenade"
+      },
       roomsBreakdown: {
         living: 30.5,
         bedroom1: 19.0,
@@ -125,11 +125,11 @@ const APARTMENTS_CATALOG = (() => {
       unitSuffix: '07',
       rooms: 2,
       area: 72.5,
-      viewUz: "G'arbiy quyosh botishi",
-      viewRu: "Западный закат",
-      viewEn: "Western Sunset",
       balconyArea: 5.4,
-      planSvgId: 'plan-2b-c',
+      view: {
+        ru: "Западная сторона и закат над городом",
+        en: "Western Sunset & City Skyline"
+      },
       roomsBreakdown: {
         living: 25.5,
         bedroom1: 18.0,
@@ -140,17 +140,17 @@ const APARTMENTS_CATALOG = (() => {
     }
   ];
 
-  // Шаблоны пентхаусов на 14 этаже (Sky Penthouses)
+  // Эксклюзивные Sky Penthouses на 14 этаже с открытыми террасами
   const penthouseTemplates = [
     {
       unitSuffix: '01',
       rooms: 4,
       area: 146.5,
-      viewUz: "360° Tashkent City to'liq panoramasi",
-      viewRu: "Круговая 360° панорама Tashkent City",
-      viewEn: "360° Tashkent City Panoramic Skyline",
-      balconyArea: 28.5, // Терраса на крыше
-      planSvgId: 'plan-ph-a',
+      balconyArea: 28.5,
+      view: {
+        ru: "Круговая 360° панорама Tashkent City",
+        en: "360° Panoramic View of Tashkent City"
+      },
       roomsBreakdown: {
         living: 45.0,
         bedroom1: 24.0,
@@ -165,11 +165,11 @@ const APARTMENTS_CATALOG = (() => {
       unitSuffix: '02',
       rooms: 3,
       area: 118.0,
-      viewUz: "Sharqiy tog'lar va shahar osmoni",
-      viewRu: "Восточные горы и панорама города",
-      viewEn: "Eastern Mountains & City Skyline",
       balconyArea: 22.0,
-      planSvgId: 'plan-ph-b',
+      view: {
+        ru: "Восточные горы и утренний город",
+        en: "Eastern Mountain Range & Morning Sun"
+      },
       roomsBreakdown: {
         living: 38.0,
         bedroom1: 22.0,
@@ -183,11 +183,11 @@ const APARTMENTS_CATALOG = (() => {
       unitSuffix: '03',
       rooms: 4,
       area: 154.2,
-      viewUz: "Janubiy-g'arbiy quyosh botishi va bog'",
-      viewRu: "Юго-западный закат и парк",
-      viewEn: "South-West Sunset & Park",
       balconyArea: 32.0,
-      planSvgId: 'plan-ph-c',
+      view: {
+        ru: "Юго-западный парк и закатные виды",
+        en: "South-Western Park & Sunset Skyline"
+      },
       roomsBreakdown: {
         living: 48.0,
         bedroom1: 26.0,
@@ -200,19 +200,18 @@ const APARTMENTS_CATALOG = (() => {
     }
   ];
 
-  // Генерация всей базы данных квартир
+  // Генерация полного каталога резиденций (87 квартир на 14 этажах)
   const allApartments = [];
 
-  // Этаж 1: Лобби, Wellness, консьерж и бизнес-пространство (без жилых квартир)
-  // Этажи 2–13: Типовые жилые
+  // 1 этаж: Гранд Лобби, ресепшн и спа (без жилых апартаментов)
+  // 2–13 этажи: Резиденции
   for (let floor = 2; floor <= 13; floor++) {
     typicalUnitTemplates.forEach((tmpl, idx) => {
       const unitNumber = `A-${floor}${tmpl.unitSuffix}`;
       const meterPrice = getBaseMeterPrice(floor);
       const totalPrice = Math.round(tmpl.area * meterPrice);
 
-      // Реалистичное распределение статусов (большинство продано/доступно)
-      // Пример: несколько продано, несколько забронировано, большинство доступно
+      // Сбалансированный статус доступности
       let status = 'available';
       const hash = (floor * 7 + idx * 13) % 10;
       if (hash === 2 || hash === 6) status = 'sold';
@@ -228,20 +227,15 @@ const APARTMENTS_CATALOG = (() => {
         meterPrice: meterPrice,
         totalPrice: totalPrice,
         status: status, // 'available' | 'reserved' | 'sold'
-        view: {
-          uz: tmpl.viewUz,
-          ru: tmpl.viewRu,
-          en: tmpl.viewEn
-        },
-        planSvgId: tmpl.planSvgId,
+        view: tmpl.view,
         roomsBreakdown: tmpl.roomsBreakdown,
         isPenthouse: false,
-        ceilingHeight: '3.30 m'
+        ceilingHeight: '3.30 м'
       });
     });
   }
 
-  // Этаж 14: Sky Penthouses
+  // 14 этаж: Sky Penthouses
   penthouseTemplates.forEach((tmpl, idx) => {
     const unitNumber = `PH-14${tmpl.unitSuffix}`;
     const meterPrice = getBaseMeterPrice(14);
@@ -260,19 +254,14 @@ const APARTMENTS_CATALOG = (() => {
       meterPrice: meterPrice,
       totalPrice: totalPrice,
       status: status,
-      view: {
-        uz: tmpl.viewUz,
-        ru: tmpl.viewRu,
-        en: tmpl.viewEn
-      },
-      planSvgId: tmpl.planSvgId,
+      view: tmpl.view,
       roomsBreakdown: tmpl.roomsBreakdown,
       isPenthouse: true,
-      ceilingHeight: '3.80 m'
+      ceilingHeight: '3.80 м'
     });
   });
 
-  // Получить статистику по этажу
+  // Получение сводки по конкретному этажу
   const getFloorStats = (floorNumber) => {
     const floorUnits = allApartments.filter(a => a.floor === floorNumber);
     const total = floorUnits.length;
@@ -281,20 +270,17 @@ const APARTMENTS_CATALOG = (() => {
     const sold = floorUnits.filter(a => a.status === 'sold').length;
 
     let floorName = {
-      uz: `${floorNumber}-qavat`,
       ru: `${floorNumber} этаж`,
       en: `Floor ${floorNumber}`
     };
 
     if (floorNumber === 1) {
       floorName = {
-        uz: "1-qavat: Grand Lobby & Wellness",
         ru: "1 этаж: Гранд Лобби & Велнес",
         en: "Floor 1: Grand Lobby & Wellness"
       };
     } else if (floorNumber === 14) {
       floorName = {
-        uz: "14-qavat: Sky Penthouses & Terraces",
         ru: "14 этаж: Скай Пентхаусы и Террасы",
         en: "Floor 14: Sky Penthouses & Terraces"
       };
@@ -311,7 +297,7 @@ const APARTMENTS_CATALOG = (() => {
     };
   };
 
-  // Получить общую статистику комплекса
+  // Общая статистика жилого комплекса
   const getComplexOverview = () => {
     const total = allApartments.length;
     const available = allApartments.filter(a => a.status === 'available').length;
@@ -336,8 +322,7 @@ const APARTMENTS_CATALOG = (() => {
     };
   };
 
-  // Расчет примерного ежемесячного платежа (ипотека / рассрочка)
-  // Формула аннуитета: PMT = P * r * (1+r)^n / ((1+r)^n - 1)
+  // Расчет аннуитетного платежа ипотеки / рассрочки
   const calculateMortgage = (totalPrice, downPaymentPercent = 30, years = 10, annualRatePercent = 17) => {
     const downPayment = Math.round(totalPrice * (downPaymentPercent / 100));
     const principal = totalPrice - downPayment;
@@ -359,9 +344,9 @@ const APARTMENTS_CATALOG = (() => {
     };
   };
 
-  // Форматирование цены в сумах (узбекских)
+  // Форматирование суммы в узбекских сумах (UZS) с пробелами
   const formatUZS = (amount) => {
-    return new Intl.NumberFormat('uz-UZ').format(amount) + " UZS";
+    return new Intl.NumberFormat('ru-RU').format(amount) + " UZS";
   };
 
   return {
@@ -373,5 +358,4 @@ const APARTMENTS_CATALOG = (() => {
   };
 })();
 
-// Экспорт в глобальную область видимости
 window.APARTMENTS_CATALOG = APARTMENTS_CATALOG;
