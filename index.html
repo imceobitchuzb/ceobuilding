@@ -20,7 +20,10 @@
        ======================================================================== -->
   <header class="site-header" id="header">
     <div class="header-inner">
-      <!-- 1. Логотип CEOBUILDING слева -->
+      <!-- 0. Распорный элемент для математически точного центрирования логотипа на мобильных -->
+      <div class="header-mobile-spacer" aria-hidden="true"></div>
+
+      <!-- 1. Логотип CEOBUILDING слева на десктопе, по центру на мобильном -->
       <a href="#hero" class="brand-logo" aria-label="CEOBUILDING Home">
         <span class="logo-mark">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -49,33 +52,58 @@
         <a href="#contact" class="nav-item" data-i18n="nav_contact">КОНТАКТЫ</a>
       </nav>
 
-      <!-- 3. Действия и языки справа (СТРОГО RU И EN) -->
+      <!-- 3. Действия и языки справа (СТРОГО RU И EN + CTA) -->
       <div class="header-actions">
-        <!-- Телефон отдела продаж -->
-        <a href="tel:+998712004488" class="phone-link" title="Отдел продаж">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-          <span>+998 71 200 44 88</span>
-        </a>
-
         <!-- Переключатель языков: строго RU / EN -->
         <div class="lang-selector">
-          <button class="lang-btn active" data-lang="ru">RU</button>
+          <button class="lang-btn active" data-lang="ru" aria-label="Русский язык">RU</button>
           <span class="lang-divider">/</span>
-          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="en" aria-label="English language">EN</button>
         </div>
 
         <!-- Кнопка подбора резиденции -->
         <a href="#apartments" class="btn-primary-header">
           <span data-i18n="btn_choose_apt">ВЫБРАТЬ РЕЗИДЕНЦИЮ</span>
         </a>
+      </div>
 
-        <!-- Мобильное бургер-меню -->
-        <button class="mobile-toggle" id="mobile-toggle" aria-label="Открыть навигацию">
-          <span></span>
-          <span></span>
-        </button>
+      <!-- 4. Мобильная кнопка меню (гамбургер) -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Открыть навигацию" aria-expanded="false" aria-controls="mobile-drawer">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+    </div>
+
+    <!-- 5. Выдвижной мобильный дровер меню -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+      <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop"></div>
+      <div class="mobile-drawer-content">
+        <nav class="mobile-nav-list">
+          <a href="#concept" class="mobile-nav-item" data-i18n="nav_concept">КОНЦЕПТ</a>
+          <a href="#architecture" class="mobile-nav-item" data-i18n="nav_architecture">АРХИТЕКТУРА</a>
+          <a href="#apartments" class="mobile-nav-item" data-i18n="nav_apartments">РЕЗИДЕНЦИИ</a>
+          <a href="#floorplans" class="mobile-nav-item" data-i18n="nav_plans">ПЛАНИРОВКИ</a>
+          <a href="#amenities" class="mobile-nav-item" data-i18n="nav_amenities">СЕРВИСЫ</a>
+          <a href="#gallery" class="mobile-nav-item" data-i18n="nav_gallery">ГАЛЕРЕЯ</a>
+          <a href="#location" class="mobile-nav-item" data-i18n="nav_location">ЛОКАЦИЯ</a>
+          <a href="#timeline" class="mobile-nav-item" data-i18n="nav_timeline">ХОД СТРОЙКИ</a>
+          <a href="#contact" class="mobile-nav-item" data-i18n="nav_contact">КОНТАКТЫ</a>
+        </nav>
+
+        <div class="mobile-drawer-footer">
+          <div class="mobile-lang-row">
+            <span class="mobile-lang-label">Язык / Language:</span>
+            <div class="lang-selector">
+              <button class="lang-btn active" data-lang="ru">RU</button>
+              <span class="lang-divider">/</span>
+              <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+          </div>
+
+          <a href="#apartments" class="btn-primary full-width mobile-cta-link">
+            <span data-i18n="btn_choose_apt">ВЫБРАТЬ РЕЗИДЕНЦИЮ</span>
+          </a>
+        </div>
       </div>
     </div>
   </header>
@@ -300,56 +328,56 @@
         </div>
       </div>
 
-      <!-- Фильтры квартир -->
-      <div class="apartments-filters-bar">
-        <!-- Комнаты -->
-        <div class="filter-group">
-          <label class="filter-label" data-i18n="filter_rooms">Количество комнат:</label>
-          <div class="rooms-chips" id="filter-rooms-chips">
-            <button class="room-chip active" data-rooms="all">Все</button>
-            <button class="room-chip" data-rooms="1">1 комн.</button>
-            <button class="room-chip" data-rooms="2">2 комн.</button>
-            <button class="room-chip" data-rooms="3">3 комн.</button>
-            <button class="room-chip" data-rooms="4">4+ / Penthouse</button>
-          </div>
-        </div>
-
-        <!-- Диапазон цены (млн сум) -->
-        <div class="filter-group">
-          <label class="filter-label" data-i18n="filter_price">Максимальная цена (млн UZS):</label>
-          <div class="range-wrap">
-            <input type="range" id="filter-price-range" min="500" max="3000" step="50" value="3000">
-            <span class="range-val" id="filter-price-val">3,000 млн</span>
-          </div>
-        </div>
-
-        <!-- Площадь -->
-        <div class="filter-group">
-          <label class="filter-label" data-i18n="filter_area">Площадь (м²):</label>
-          <div class="range-wrap">
-            <input type="range" id="filter-area-range" min="40" max="160" step="5" value="160">
-            <span class="range-val" id="filter-area-val">160 m²</span>
-          </div>
-        </div>
-
-        <!-- Только доступные -->
-        <div class="filter-group filter-checkbox-group">
-          <label class="checkbox-label">
-            <input type="checkbox" id="filter-available-only" checked>
-            <span data-i18n="filter_available_only">Только в продаже</span>
-          </label>
-        </div>
-
-        <!-- Кнопка сброса -->
-        <button class="btn-reset-filters" id="btn-reset-filters" data-i18n="btn_reset_filters">
-          СБРОСИТЬ ФИЛЬТРЫ
-        </button>
-      </div>
-
-      <!-- ГЛАВНЫЙ ИНТЕРАКТИВНЫЙ БЛОК: ЭТАЖИ + ПЛАН + ДЕТАЛИ -->
-      <div class="apartments-interactive-layout">
+      <!-- ЕДИНЫЙ КОНТЕЙНЕР ПОДБОРА РЕЗИДЕНЦИЙ (ДЕСКТОП: СЕТКА 3 КОЛОНКИ + ФИЛЬТРЫ, МОБИЛЬНЫЙ: ЧЕТКИЙ ПОРЯДОК 1-5) -->
+      <div class="apartments-experience-container" id="apartments-experience-container">
         
-        <!-- ЛЕВАЯ КОЛОНКА: ВЫБОР ЭТАЖА (14 -> 1) -->
+        <!-- Фильтры квартир (на десктопе вверху, на мобильном идут после карточки выбранной квартиры) -->
+        <div class="apartments-filters-bar">
+          <!-- Комнаты -->
+          <div class="filter-group">
+            <label class="filter-label" data-i18n="filter_rooms">Количество комнат:</label>
+            <div class="rooms-chips" id="filter-rooms-chips">
+              <button class="room-chip active" data-rooms="all">Все</button>
+              <button class="room-chip" data-rooms="1">1 комн.</button>
+              <button class="room-chip" data-rooms="2">2 комн.</button>
+              <button class="room-chip" data-rooms="3">3 комн.</button>
+              <button class="room-chip" data-rooms="4">4+ / Penthouse</button>
+            </div>
+          </div>
+
+          <!-- Диапазон цены (млн сум) -->
+          <div class="filter-group">
+            <label class="filter-label" data-i18n="filter_price">Максимальная цена (млн UZS):</label>
+            <div class="range-wrap">
+              <input type="range" id="filter-price-range" min="500" max="3000" step="50" value="3000">
+              <span class="range-val" id="filter-price-val">3,000 млн</span>
+            </div>
+          </div>
+
+          <!-- Площадь -->
+          <div class="filter-group">
+            <label class="filter-label" data-i18n="filter_area">Площадь (м²):</label>
+            <div class="range-wrap">
+              <input type="range" id="filter-area-range" min="40" max="160" step="5" value="160">
+              <span class="range-val" id="filter-area-val">160 m²</span>
+            </div>
+          </div>
+
+          <!-- Только доступные -->
+          <div class="filter-group filter-checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="filter-available-only" checked>
+              <span data-i18n="filter_available_only">Только в продаже</span>
+            </label>
+          </div>
+
+          <!-- Кнопка сброса -->
+          <button class="btn-reset-filters" id="btn-reset-filters" data-i18n="btn_reset_filters">
+            СБРОСИТЬ ФИЛЬТРЫ
+          </button>
+        </div>
+
+        <!-- 1. ВЫБОР ЭТАЖА (14 -> 1) -->
         <aside class="floor-selector-column">
           <div class="fsc-header">
             <span class="fsc-title" data-i18n="fsc_header">ВЫБОР ЭТАЖА</span>
@@ -360,14 +388,14 @@
           </div>
         </aside>
 
-        <!-- ЦЕНТРАЛЬНАЯ КОЛОНКА: ВЕКТОРНЫЙ ПОЭТАЖНЫЙ ПЛАН (FLOOR PLAN) -->
+        <!-- 2. ВЕКТОРНЫЙ ПОЭТАЖНЫЙ ПЛАН (FLOOR PLAN) -->
         <main class="floorplan-main-view">
           <div id="interactive-floorplan-container">
             <!-- Сюда динамически рендерится SVG план этажа -->
           </div>
         </main>
 
-        <!-- ПРАВАЯ КОЛОНКА: КАРТОЧКА ВЫБРАННОЙ РЕЗИДЕНЦИИ -->
+        <!-- 3. КАРТОЧКА ВЫБРАННОЙ РЕЗИДЕНЦИИ (С ДЕЙСТВИЯМИ БРОНИРОВАНИЯ) -->
         <aside class="apartment-details-sidebar" id="apartment-details-card">
           <div class="apt-card-empty" id="apt-card-placeholder">
             <div class="empty-icon-wrap">
@@ -439,7 +467,7 @@
               </div>
             </div>
 
-            <!-- Действия -->
+            <!-- Действия: бронирование и чертеж -->
             <div class="apt-actions-col">
               <button class="btn-primary full-width" id="btn-inquire-selected">
                 <span data-i18n="btn_book_apt">ЗАБРОНИРОВАТЬ ЭТУ РЕЗИДЕНЦИЮ</span>
@@ -452,6 +480,7 @@
             <span class="demo-data-note">* Демонстрационный расчет. Точные условия уточняйте в офисе продаж.</span>
           </div>
         </aside>
+
       </div>
     </div>
   </section>
@@ -869,7 +898,7 @@
           <div class="contact-socials-block">
             <span class="cs-label">МЫ В СОЦИАЛЬНЫХ СЕТЯХ</span>
             <div class="social-links-row">
-              <a href="https://instagram.com/ceobuilding" target="_blank" rel="noopener noreferrer" class="social-btn" data-social="instagram" aria-label="Instagram CEOBUILDING">
+              <a href="https://instagram.com/imceouz" target="_blank" rel="noopener noreferrer" class="social-btn" data-social="instagram" aria-label="Instagram imceouz">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -878,7 +907,7 @@
                 <span>Instagram</span>
               </a>
 
-              <a href="https://t.me/ceobuilding" target="_blank" rel="noopener noreferrer" class="social-btn" data-social="telegram" aria-label="Telegram CEOBUILDING">
+              <a href="https://t.me/imceouz" target="_blank" rel="noopener noreferrer" class="social-btn" data-social="telegram" aria-label="Telegram imceouz">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <path d="M21.198 2.433a2.242 2.242 0 0 0-2.022.284L2.41 11.455a2.25 2.25 0 0 0 .134 4.084l4.51 1.706 1.76 5.564a1.5 1.5 0 0 0 2.378.68l3.19-2.58 4.795 3.528a2.25 2.25 0 0 0 3.54-1.282l3.4-17.7a2.25 2.25 0 0 0-2.919-2.602z"/>
                 </svg>
@@ -959,9 +988,9 @@
           <span>Tashkent City, Lot-204</span>
           
           <div class="footer-socials">
-            <a href="https://instagram.com/ceobuilding" target="_blank" rel="noopener noreferrer" data-social="instagram" aria-label="Instagram">Instagram</a>
+            <a href="https://instagram.com/imceouz" target="_blank" rel="noopener noreferrer" data-social="instagram" aria-label="Instagram">Instagram</a>
             <span>·</span>
-            <a href="https://t.me/ceobuilding" target="_blank" rel="noopener noreferrer" data-social="telegram" aria-label="Telegram">Telegram</a>
+            <a href="https://t.me/imceouz" target="_blank" rel="noopener noreferrer" data-social="telegram" aria-label="Telegram">Telegram</a>
           </div>
         </div>
       </div>
@@ -984,6 +1013,13 @@
       </div>
     </div>
   </div>
+
+  <!-- Кнопка быстрой плавной прокрутки наверх (Back to Top) -->
+  <button class="back-to-top" id="back-to-top" aria-label="Вернуться наверх" title="Наверх">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
 
   <!-- ЛОКАЛЬНЫЕ БИБЛИОТЕКИ (100% надежная оффлайн работа) -->
   <script src="js/libs/three.min.js"></script>

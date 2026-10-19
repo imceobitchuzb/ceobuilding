@@ -6,10 +6,10 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Социальные сети проекта CEOBUILDING
+  // Социальные сети проекта (Telegram & Instagram imceouz)
   const SOCIAL_LINKS = {
-    instagram: "https://instagram.com/ceobuilding",
-    telegram: "https://t.me/ceobuilding"
+    instagram: "https://instagram.com/imceouz",
+    telegram: "https://t.me/imceouz"
   };
 
   // 1. ДВУЯЗЫЧНЫЙ СЛОВАРЬ (РУССКИЙ — ПО УМОЛЧАНИЮ, АНГЛИЙСКИЙ)
@@ -810,30 +810,103 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 9. МОБИЛЬНОЕ МЕНЮ
+  // 9. МОБИЛЬНОЕ МЕНЮ (НАДЕЖНОЕ ОТКРЫТИЕ/ЗАКРЫТИЕ, ARIA, ESCAPE, БЛОКИРОВКА СКРОЛЛА)
   const mobileToggle = document.getElementById('mobile-toggle');
-  const mainNav = document.getElementById('main-nav');
-  if (mobileToggle && mainNav) {
-    mobileToggle.addEventListener('click', () => {
-      mobileToggle.classList.toggle('active');
-      mainNav.classList.toggle('mobile-open');
-    });
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  const mobileDrawerBackdrop = document.getElementById('mobile-drawer-backdrop');
 
-    document.querySelectorAll('.nav-item').forEach(link => {
-      link.addEventListener('click', () => {
-        if (window.innerWidth <= 992) {
-          mobileToggle.classList.remove('active');
-          mainNav.classList.remove('mobile-open');
-        }
-      });
+  function openMobileMenu() {
+    if (!mobileDrawer || !mobileToggle) return;
+    mobileToggle.classList.add('active');
+    mobileToggle.setAttribute('aria-expanded', 'true');
+    mobileDrawer.classList.add('open');
+    mobileDrawer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('mobile-menu-active');
+  }
+
+  function closeMobileMenu() {
+    if (!mobileDrawer || !mobileToggle) return;
+    mobileToggle.classList.remove('active');
+    mobileToggle.setAttribute('aria-expanded', 'false');
+    mobileDrawer.classList.remove('open');
+    mobileDrawer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('mobile-menu-active');
+  }
+
+  function toggleMobileMenu() {
+    if (!mobileDrawer) return;
+    const isOpen = mobileDrawer.classList.contains('open');
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  }
+
+  if (mobileToggle) {
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMobileMenu();
     });
   }
+
+  if (mobileDrawerBackdrop) {
+    mobileDrawerBackdrop.addEventListener('click', closeMobileMenu);
+  }
+
+  // Закрытие при клике по любой ссылке внутри мобильного меню
+  document.querySelectorAll('.mobile-nav-item, .mobile-cta-link').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileMenu();
+    });
+  });
+
+  // Закрытие по Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileDrawer && mobileDrawer.classList.contains('open')) {
+      closeMobileMenu();
+    }
+  });
+
+  // Закрытие меню при ресайзе экрана до десктопа (> 992px)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 992 && mobileDrawer && mobileDrawer.classList.contains('open')) {
+      closeMobileMenu();
+    }
+  });
 
   // 10. ПРИВЯЗКА СОЦИАЛЬНЫХ СЕТЕЙ (INSTAGRAM И TELEGRAM)
   document.querySelectorAll('a[data-social="instagram"]').forEach(a => a.href = SOCIAL_LINKS.instagram);
   document.querySelectorAll('a[data-social="telegram"]').forEach(a => a.href = SOCIAL_LINKS.telegram);
 
-  // 11. СТАРТОВАЯ ИНИЦИАЛИЗАЦИЯ
+  // 11. КНОПКА ВОЗВРАТА НАВЕРХ (BACK TO TOP)
+  const backToTopBtn = document.getElementById('back-to-top');
+  if (backToTopBtn) {
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY > 350) {
+            backToTopBtn.classList.add('visible');
+          } else {
+            backToTopBtn.classList.remove('visible');
+          }
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }, { passive: true });
+
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // 12. СТАРТОВАЯ ИНИЦИАЛИЗАЦИЯ
   updateFloorSelectorUI();
   selectFloor(12);
 

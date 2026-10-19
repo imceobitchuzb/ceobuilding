@@ -26,7 +26,7 @@
   --border-dark: #14171A;        /* Акцентный контур */
   --border-inverse: rgba(255, 255, 255, 0.12);
 
-  /* Архитектурный бронзовый акцент (сдержанный, благородный) */
+  /* Архитектурный бронзовый акцент */
   --accent-bronze: #8C7355;
   --accent-bronze-hover: #735D43;
   --accent-bronze-soft: rgba(140, 115, 85, 0.08);
@@ -62,6 +62,8 @@ html {
   font-size: 15px;
   background-color: var(--bg-page);
   color: var(--text-primary);
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -70,9 +72,15 @@ body {
   line-height: 1.65;
   background-color: var(--bg-page);
   color: var(--text-primary);
+  max-width: 100%;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body.mobile-menu-active {
+  overflow: hidden !important;
+  touch-action: none;
 }
 
 img {
@@ -106,6 +114,7 @@ input, select {
   max-width: 1360px;
   margin: 0 auto;
   padding: 0 40px;
+  box-sizing: border-box;
 }
 
 .section-block {
@@ -115,7 +124,7 @@ input, select {
   background-color: var(--bg-page);
 }
 
-/* Теги секций (нумерация и заголовок) */
+/* Теги секций */
 .section-header-tag {
   display: inline-flex;
   align-items: center;
@@ -157,38 +166,48 @@ input, select {
 }
 
 /* ==========================================================================
-   ВЕРХНЯЯ ШАПКА САЙТА (HEADER)
+   ВЕРХНЯЯ ШАПКА САЙТА (HEADER — ДЕСКТОП И МОБИЛЬНЫЙ)
+   Строго выверенная сетка: LEFT (логотип), CENTER (навигация), RIGHT (язык + CTA)
    ========================================================================== */
 .site-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
   z-index: 1000;
-  background-color: rgba(249, 248, 245, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(249, 248, 245, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
-  transition: all var(--transition-smooth);
+  transition: background-color var(--transition-fast);
 }
 
 .header-inner {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 40px;
-  height: 76px;
+  height: 78px;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  gap: 32px;
+  gap: 20px;
+  box-sizing: border-box;
 }
 
-/* Логотип */
+/* Распорка для математически точного центрирования логотипа на мобильных (скрыта на десктопе) */
+.header-mobile-spacer {
+  display: none;
+}
+
+/* 1. Левая колонка: Логотип CEOBUILDING */
 .brand-logo {
   display: flex;
   align-items: center;
   gap: 12px;
   color: var(--text-primary);
+  justify-self: start;
+  text-decoration: none;
 }
 
 .logo-mark {
@@ -196,6 +215,7 @@ input, select {
   align-items: center;
   justify-content: center;
   color: var(--text-primary);
+  flex-shrink: 0;
 }
 
 .logo-text {
@@ -218,24 +238,28 @@ input, select {
   letter-spacing: 1.8px;
   color: var(--accent-bronze);
   margin-top: 3px;
+  white-space: nowrap;
 }
 
-/* Навигация */
+/* 2. Центральная колонка: Навигация (строго геометрически по центру) */
 .main-nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 28px;
+  gap: 24px;
+  justify-self: center;
+  white-space: nowrap;
 }
 
 .nav-item {
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   color: var(--text-secondary);
   text-transform: uppercase;
   position: relative;
   padding: 6px 0;
+  transition: color var(--transition-fast);
 }
 
 .nav-item::after {
@@ -259,62 +283,59 @@ input, select {
   width: 100%;
 }
 
-/* Правые действия шапки */
+/* 3. Правая колонка: Действия (Язык + CTA) */
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
-}
-
-.phone-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  color: var(--text-primary);
-  padding: 8px 12px;
-  border-radius: 2px;
-  border: 1px solid var(--border-subtle);
-  background-color: var(--bg-surface);
-}
-
-.phone-link:hover {
-  border-color: var(--accent-bronze);
+  justify-content: flex-end;
+  gap: 18px;
+  justify-self: end;
 }
 
 /* Переключатель языков RU / EN */
 .lang-selector {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  flex-shrink: 0;
 }
 
 .lang-btn {
   color: var(--text-muted);
   padding: 4px 6px;
+  font-weight: 500;
+  min-width: 26px;
+  text-align: center;
   transition: color var(--transition-fast);
+  cursor: pointer;
 }
 
 .lang-btn.active {
   color: var(--text-primary);
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  font-weight: 600;
+  border-bottom: 1.5px solid var(--text-primary);
+}
+
+.lang-btn:hover:not(.active) {
+  color: var(--text-primary);
 }
 
 .lang-divider {
   color: var(--border-medium);
+  user-select: none;
 }
 
-/* Кнопка в шапке */
+/* Десктопная кнопка CTA */
 .btn-primary-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
   color: var(--text-inverse);
   background-color: var(--text-primary);
@@ -322,42 +343,240 @@ input, select {
   border-radius: 2px;
   transition: background-color var(--transition-fast);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .btn-primary-header:hover {
   background-color: var(--accent-bronze);
 }
 
-/* Мобильный бургер */
+/* 4. Кнопка мобильного меню (премиальный бургер в стиле Quiet Luxury) */
 .mobile-toggle {
   display: none;
+  width: 44px;
+  height: 44px;
   flex-direction: column;
   justify-content: center;
-  gap: 6px;
-  width: 32px;
-  height: 32px;
-  padding: 4px;
+  align-items: center;
+  gap: 5.5px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1002;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.mobile-toggle span {
+.mobile-toggle:hover {
+  border-color: var(--accent-bronze);
+  background-color: var(--bg-surface-soft);
+  transform: translateY(-1px);
+}
+
+.mobile-toggle .burger-line {
   display: block;
-  width: 100%;
+  width: 19px;
   height: 1.5px;
   background-color: var(--text-primary);
-  transition: all var(--transition-fast);
+  border-radius: 1px;
+  transition: transform 0.28s cubic-bezier(0.25, 1, 0.5, 1),
+              background-color 0.2s ease,
+              width 0.25s ease;
+  transform-origin: center;
 }
 
-.mobile-toggle.active span:nth-child(1) {
+.mobile-toggle.active {
+  background-color: var(--text-primary);
+  border-color: var(--text-primary);
+  box-shadow: 0 4px 12px rgba(20, 23, 26, 0.2);
+}
+
+.mobile-toggle.active .burger-line {
+  background-color: #FFFFFF;
+}
+
+.mobile-toggle.active .burger-line:nth-child(1) {
   transform: translateY(3.5px) rotate(45deg);
 }
 
-.mobile-toggle.active span:nth-child(2) {
-  transform: translateY(-4px) rotate(-45deg);
+.mobile-toggle.active .burger-line:nth-child(2) {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+/* 5. Выдвижной мобильный дровер меню */
+.mobile-drawer {
+  position: fixed;
+  top: 66px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 66px);
+  height: calc(100dvh - 66px);
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.mobile-drawer.open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-drawer-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(14, 17, 20, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.mobile-drawer-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: var(--bg-page);
+  border-bottom: 1px solid var(--border-medium);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  padding: 24px 20px 32px 20px;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-10px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.mobile-drawer.open .mobile-drawer-content {
+  transform: translateY(0);
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.mobile-nav-item {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  padding: 12px 14px;
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item:active {
+  background-color: var(--bg-surface-soft);
+  color: var(--accent-bronze);
+}
+
+.mobile-drawer-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 20px;
+}
+
+.mobile-lang-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+}
+
+.mobile-lang-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mobile-cta-link {
+  width: 100%;
+  height: 48px;
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+}
+
+/* ==========================================================================
+   КНОПКА ВОЗВРАТА НАВЕРХ (BACK TO TOP)
+   Элегантная плавающая стрелочка в стиле Quiet Luxury
+   ========================================================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(249, 248, 245, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 990;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.2s ease;
+  padding: 0;
+}
+
+.back-to-top svg {
+  transition: transform 0.25s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background-color: var(--text-primary);
+  border-color: var(--text-primary);
+  color: #FFFFFF;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+}
+
+.back-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+.back-to-top:active {
+  transform: translateY(1px);
 }
 
 /* ==========================================================================
    1. СЕКЦИЯ HERO (ФОТОГРАФИЧЕСКИЙ КИНЕМАТОГРАФИЧНЫЙ ФОН)
-   ======================================================================== */
+   ========================================================================== */
 .section-hero {
   position: relative;
   min-height: 100vh;
@@ -366,6 +585,7 @@ input, select {
   padding: 140px 0 60px 0;
   overflow: hidden;
   background-color: var(--bg-dark-section);
+  box-sizing: border-box;
 }
 
 .hero-backdrop {
@@ -381,7 +601,7 @@ input, select {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 25%;
   transform: scale(1.02);
   transition: transform 12s ease-out;
 }
@@ -411,6 +631,7 @@ input, select {
   max-width: 1360px;
   margin: 0 auto;
   padding: 0 40px;
+  box-sizing: border-box;
 }
 
 .hero-badge {
@@ -426,6 +647,7 @@ input, select {
   letter-spacing: 2px;
   margin-bottom: 28px;
   border-radius: 2px;
+  max-width: 100%;
 }
 
 .badge-dot {
@@ -433,17 +655,20 @@ input, select {
   height: 6px;
   border-radius: 50%;
   background-color: var(--accent-bronze);
+  flex-shrink: 0;
 }
 
 .hero-heading {
   font-family: var(--font-serif);
-  font-size: 76px;
+  font-size: clamp(38px, 6.5vw, 76px);
   font-weight: 300;
   line-height: 1.08;
   letter-spacing: -1px;
   color: var(--text-inverse);
   max-width: 960px;
   margin-bottom: 24px;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-heading .serif-italic {
@@ -514,6 +739,7 @@ input, select {
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 2px;
+  box-sizing: border-box;
 }
 
 .metric-item {
@@ -699,6 +925,7 @@ input, select {
   color: var(--text-secondary);
   border-radius: 2px;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .cam-pill.active {
@@ -718,6 +945,7 @@ input, select {
   border: 1px solid var(--border-medium);
   border-radius: 2px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 #building-3d-canvas {
@@ -736,6 +964,7 @@ input, select {
   border-radius: 2px;
   max-width: 380px;
   color: var(--text-inverse);
+  box-sizing: border-box;
 }
 
 .fhud-badge {
@@ -782,6 +1011,7 @@ input, select {
   padding: 6px 14px;
   border-radius: 2px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
 }
 
 /* ==========================================================================
@@ -825,8 +1055,17 @@ input, select {
   margin-top: 4px;
 }
 
-/* Панель фильтров */
+/* Единый контейнер подбора */
+.apartments-experience-container {
+  display: grid;
+  grid-template-columns: 240px 1fr 360px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Панель фильтров (на десктопе растянута на всю ширину сетки) */
 .apartments-filters-bar {
+  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -835,7 +1074,7 @@ input, select {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
-  margin-bottom: 28px;
+  box-sizing: border-box;
 }
 
 .filter-group {
@@ -854,6 +1093,7 @@ input, select {
 .rooms-chips {
   display: flex;
   gap: 6px;
+  flex-wrap: wrap;
 }
 
 .room-chip {
@@ -865,6 +1105,7 @@ input, select {
   background-color: var(--bg-page);
   border-radius: 2px;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .room-chip.active {
@@ -936,22 +1177,16 @@ input, select {
   color: var(--text-primary);
 }
 
-/* Главная 3-колоночная раскладка селектора */
-.apartments-interactive-layout {
-  display: grid;
-  grid-template-columns: 240px 1fr 360px;
-  gap: 24px;
-  align-items: stretch;
-}
-
-/* Левая колонка: выбор этажа */
+/* 1. Левая колонка: выбор этажа */
 .floor-selector-column {
+  grid-column: 1;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .fsc-header {
@@ -1027,6 +1262,7 @@ input, select {
   background-color: var(--bg-surface-soft);
   padding: 2px 6px;
   border-radius: 2px;
+  flex-shrink: 0;
 }
 
 .btn-floor-row:hover {
@@ -1048,8 +1284,9 @@ input, select {
   color: var(--text-inverse);
 }
 
-/* Центральная колонка: векторный план этажа */
+/* 2. Центральная колонка: векторный план этажа */
 .floorplan-main-view {
+  grid-column: 2;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
@@ -1058,6 +1295,7 @@ input, select {
   min-height: 540px;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .floorplan-wrapper {
@@ -1097,18 +1335,21 @@ input, select {
   gap: 16px;
   font-size: 11px;
   color: var(--text-secondary);
+  flex-wrap: wrap;
 }
 
 .leg-item {
   display: flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 .leg-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .leg-dot.available { background-color: var(--status-available); }
@@ -1120,6 +1361,8 @@ input, select {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  overflow: hidden;
 }
 
 .floorplan-svg {
@@ -1259,14 +1502,16 @@ input, select {
   font-style: italic;
 }
 
-/* Правая колонка: карточка выбранной квартиры */
+/* 3. Правая колонка: карточка выбранной квартиры */
 .apartment-details-sidebar {
+  grid-column: 3;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
   padding: 24px;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .apt-card-empty {
@@ -1583,6 +1828,7 @@ input, select {
   background-color: var(--bg-surface);
   border-radius: 2px;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .plan-tab.active {
@@ -1601,6 +1847,7 @@ input, select {
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
   padding: 32px;
+  box-sizing: border-box;
 }
 
 .bp-header {
@@ -1627,6 +1874,7 @@ input, select {
   height: 6px;
   border-radius: 50%;
   background-color: var(--accent-bronze);
+  flex-shrink: 0;
 }
 
 .bp-code {
@@ -1640,6 +1888,7 @@ input, select {
   width: 100%;
   max-width: 800px;
   margin: 0 auto 24px auto;
+  overflow: hidden;
 }
 
 .bp-vector {
@@ -1680,6 +1929,7 @@ input, select {
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
   transition: all var(--transition-smooth);
+  box-sizing: border-box;
 }
 
 .amenity-card:hover {
@@ -1720,6 +1970,7 @@ input, select {
 .gallery-filter-tabs {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .g-tab {
@@ -1732,6 +1983,7 @@ input, select {
   background-color: var(--bg-surface);
   border-radius: 2px;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .g-tab.active {
@@ -1847,6 +2099,7 @@ input, select {
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .map-blueprint-box {
@@ -1857,6 +2110,7 @@ input, select {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .map-svg-vector {
@@ -1887,6 +2141,7 @@ input, select {
   border-radius: 2px;
   padding: 24px 20px;
   position: relative;
+  box-sizing: border-box;
 }
 
 .t-step.current {
@@ -1987,6 +2242,7 @@ input, select {
   background-color: var(--bg-surface);
   border-radius: 2px;
   color: var(--accent-bronze);
+  flex-shrink: 0;
 }
 
 .cd-label {
@@ -2001,6 +2257,7 @@ input, select {
   font-size: 14px;
   font-weight: 500;
   color: var(--text-primary);
+  word-break: break-word;
 }
 
 .cd-link:hover {
@@ -2027,6 +2284,7 @@ input, select {
 .social-links-row {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .social-btn {
@@ -2055,6 +2313,7 @@ input, select {
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
   padding: 40px;
+  box-sizing: border-box;
 }
 
 .cf-title {
@@ -2099,6 +2358,8 @@ input, select {
   background-color: var(--bg-page);
   outline: none;
   transition: border-color var(--transition-fast);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -2136,6 +2397,7 @@ input, select {
   background-color: var(--bg-dark-section);
   color: var(--text-inverse);
   padding: 80px 0 32px 0;
+  box-sizing: border-box;
 }
 
 .footer-top-row {
@@ -2232,6 +2494,7 @@ input, select {
   align-items: center;
   justify-content: center;
   padding: 24px;
+  box-sizing: border-box;
 }
 
 .modal-backdrop.open {
@@ -2248,6 +2511,7 @@ input, select {
   overflow-y: auto;
   position: relative;
   padding: 32px;
+  box-sizing: border-box;
 }
 
 .modal-close {
@@ -2266,16 +2530,31 @@ input, select {
 
 /* ==========================================================================
    АДАПТИВНОСТЬ (RESPONSIVE MEDIA QUERIES)
-   Desktop, Laptop, Tablet, Mobile (320px, 375px, 390px, 430px)
+   Выверенные брейкпоинты: Ноутбуки (1240px), Планшеты (992px), Смартфоны (768px - 320px)
    ========================================================================== */
 
-/* Ноутбуки и планшеты в альбомной ориентации */
-@media (max-width: 1200px) {
-  .hero-heading {
-    font-size: 60px;
+/* Ноутбуки и компактные экраны (993px - 1240px) */
+@media (max-width: 1240px) {
+  .header-inner {
+    padding: 0 24px;
+    gap: 16px;
   }
 
-  .apartments-interactive-layout {
+  .main-nav {
+    gap: 16px;
+  }
+
+  .nav-item {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .btn-primary-header {
+    padding: 9px 14px;
+    font-size: 10.5px;
+  }
+
+  .apartments-experience-container {
     grid-template-columns: 200px 1fr 320px;
     gap: 16px;
   }
@@ -2293,35 +2572,50 @@ input, select {
 /* Планшеты (до 992px) */
 @media (max-width: 992px) {
   .header-inner {
-    padding: 0 24px;
+    padding: 0 20px;
     height: 70px;
+    display: grid !important;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+    justify-content: initial;
+    box-sizing: border-box;
   }
 
-  /* Мобильная навигация */
+  .header-mobile-spacer {
+    display: block !important;
+    width: 44px;
+    height: 44px;
+    justify-self: start;
+  }
+
+  .brand-logo {
+    justify-self: center;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* На мобильных навигация прячется в мобильный дровер */
   .main-nav {
-    display: none;
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background-color: var(--bg-surface);
-    border-bottom: 1px solid var(--border-medium);
-    flex-direction: column;
-    padding: 28px;
-    gap: 18px;
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+    display: none !important;
   }
 
-  .main-nav.mobile-open {
-    display: flex;
+  .header-actions {
+    display: none !important;
   }
 
   .mobile-toggle {
-    display: flex;
+    display: flex !important;
+    justify-self: end;
+  }
+
+  .mobile-drawer {
+    top: 70px;
+    height: calc(100vh - 70px);
+    height: calc(100dvh - 70px);
   }
 
   .hero-heading {
-    font-size: 48px;
+    font-size: clamp(38px, 6vw, 56px);
   }
 
   .concept-grid,
@@ -2331,14 +2625,21 @@ input, select {
     gap: 40px;
   }
 
-  .apartments-interactive-layout {
+  .apartments-experience-container {
     grid-template-columns: 1fr;
+  }
+
+  .floor-selector-column,
+  .floorplan-main-view,
+  .apartment-details-sidebar {
+    grid-column: 1;
   }
 
   .floor-buttons-list {
     flex-direction: row;
     max-height: none;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     padding-bottom: 8px;
   }
 
@@ -2358,80 +2659,237 @@ input, select {
 
 /* Мобильные экраны (до 768px, включая 320px, 375px, 390px, 430px) */
 @media (max-width: 768px) {
+  .header-inner {
+    padding: 0 16px;
+    height: 64px;
+    grid-template-columns: 40px 1fr 40px;
+  }
+
+  .header-mobile-spacer {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-logo {
+    gap: 8px;
+    justify-self: center;
+    margin: 0 auto;
+  }
+
+  .brand-title {
+    font-size: 17px;
+    letter-spacing: 2px;
+  }
+
+  .brand-subtitle {
+    font-size: 7.5px;
+    letter-spacing: 1.2px;
+  }
+
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-drawer {
+    top: 64px;
+    height: calc(100vh - 64px);
+    height: calc(100dvh - 64px);
+  }
+
   .content-container {
-    padding: 0 20px;
+    padding: 0 16px;
   }
 
   .section-block {
-    padding: 80px 0;
+    padding: 70px 0;
   }
 
   .section-title {
-    font-size: 32px;
+    font-size: clamp(26px, 6.5vw, 36px);
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .section-description {
+    font-size: 14px;
+    line-height: 1.65;
   }
 
   .section-hero {
-    padding: 120px 0 40px 0;
+    padding: 96px 0 32px 0;
+    min-height: 100svh;
+  }
+
+  .hero-backdrop .hero-bg-photo {
+    object-position: center 30%;
+  }
+
+  .hero-badge {
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    padding: 5px 10px;
+    margin-bottom: 20px;
   }
 
   .hero-heading {
-    font-size: 38px;
-    line-height: 1.15;
+    font-size: clamp(32px, 8.5vw, 44px);
+    line-height: 1.12;
+    margin-bottom: 18px;
   }
 
   .hero-subtext {
-    font-size: 14.5px;
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 28px;
   }
 
   .hero-actions-row {
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
+    gap: 10px;
+    margin-bottom: 40px;
   }
 
   .btn-hero-primary,
   .btn-hero-secondary {
+    width: 100%;
     justify-content: center;
+    padding: 14px 20px;
+    font-size: 11px;
+    letter-spacing: 1.2px;
   }
 
   .hero-metrics-bar {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
     width: 100%;
-    padding: 16px 20px;
+    padding: 14px 16px;
+  }
+
+  .metric-item .metric-num {
+    font-size: 22px;
+  }
+
+  .metric-item .metric-label {
+    font-size: 9.5px;
   }
 
   .metric-divider {
     display: none;
   }
 
-  .concept-cards-grid,
-  .amenities-grid,
-  .gallery-grid,
-  .timeline-stepper {
-    grid-template-columns: 1fr;
+  .scroll-down-hint {
+    display: none;
   }
 
-  .showcase-header-row,
-  .apartments-top-bar,
-  .section-header-row {
+  /* ========================================================================
+     СЕКЦИЯ ПОДБОРА РЕЗИДЕНЦИЙ НА МОБИЛЬНОМ: СТРОГИЙ ПОРЯДОК 1 - 5
+     1. Выбор этажа
+     2. Интерактивный план этажа
+     3. Карточка выбранной резиденции
+     4. Фильтры и расчет цен
+     5. Действие бронирования
+     ======================================================================== */
+  .apartments-experience-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* 1. Выбор этажа */
+  .floor-selector-column {
+    order: 1;
+    width: 100%;
+    padding: 16px 14px;
+  }
+
+  .floor-buttons-list {
+    flex-direction: row;
+    max-height: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    gap: 6px;
+  }
+
+  .btn-floor-row {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    font-size: 11.5px;
+  }
+
+  /* 2. Поэтажный интерактивный план */
+  .floorplan-main-view {
+    order: 2;
+    width: 100%;
+    padding: 16px 12px;
+    min-height: auto;
+  }
+
+  .floorplan-header-bar {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
+  }
+
+  .fph-legend {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    font-size: 10.5px;
+  }
+
+  .floorplan-svg {
+    max-height: 340px;
+  }
+
+  /* 3. Карточка выбранной квартиры */
+  .apartment-details-sidebar {
+    order: 3;
+    width: 100%;
+    padding: 20px 16px;
+  }
+
+  .apt-title-rooms {
+    font-size: 20px;
+  }
+
+  .apt-params-grid {
+    gap: 8px;
+  }
+
+  .param-box {
+    padding: 8px 10px;
+  }
+
+  /* 4. Фильтры и расчет цен */
+  .apartments-filters-bar {
+    order: 4;
+    width: 100%;
+    padding: 16px 14px;
+    flex-direction: column;
+    align-items: stretch;
     gap: 16px;
   }
 
-  .camera-mode-pills,
-  .gallery-filter-tabs,
-  .plan-type-tabs {
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 4px;
+  .rooms-chips {
+    flex-wrap: wrap;
+    gap: 6px;
   }
 
-  .apartments-filters-bar {
-    flex-direction: column;
-    align-items: stretch;
+  .room-chip {
+    padding: 6px 10px;
+    font-size: 11px;
+    flex: 1 1 auto;
+    text-align: center;
   }
 
   .range-wrap {
@@ -2439,12 +2897,75 @@ input, select {
     justify-content: space-between;
   }
 
+  .range-wrap input[type="range"] {
+    flex: 1;
+    max-width: none;
+    margin-right: 12px;
+  }
+
   .filter-checkbox-group {
     margin-left: 0;
   }
 
-  .contact-form-card {
+  /* 3D Сцена */
+  .building-3d-viewport {
+    height: 380px;
+  }
+
+  .floor-3d-hud {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-width: none;
+    padding: 12px 14px;
+  }
+
+  .canvas-instructions {
+    top: 10px;
+    right: 10px;
+    bottom: auto;
+    font-size: 9.5px;
+    padding: 4px 8px;
+  }
+
+  .camera-mode-pills,
+  .gallery-filter-tabs,
+  .plan-type-tabs {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    flex-wrap: nowrap;
+  }
+
+  /* Остальные секции */
+  .concept-cards-grid,
+  .amenities-grid,
+  .gallery-grid,
+  .timeline-stepper {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .amenity-card {
     padding: 24px 20px;
+  }
+
+  .gallery-item {
+    height: 240px;
+  }
+
+  .location-map-card .map-blueprint-box {
+    height: 260px;
+  }
+
+  .contact-form-card {
+    padding: 24px 16px;
+  }
+
+  .modal-dialog {
+    padding: 20px 14px;
+    max-width: 95vw;
   }
 
   .footer-bottom-row {
@@ -2452,31 +2973,48 @@ input, select {
     gap: 12px;
     text-align: center;
   }
-
-  .btn-primary-header {
-    display: none;
-  }
-
-  .phone-link span {
-    display: none;
-  }
-
-  .phone-link {
-    padding: 8px;
-  }
 }
 
-/* Сверхкомпактные мобильные экраны (320px - 360px) */
+/* Компактные мобильные экраны (<= 360px) */
 @media (max-width: 360px) {
-  .hero-heading {
-    font-size: 32px;
+  .header-inner {
+    padding: 0 10px;
+    grid-template-columns: 36px 1fr 36px;
+  }
+
+  .header-mobile-spacer {
+    width: 36px;
+    height: 36px;
+  }
+
+  .mobile-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .brand-logo {
+    gap: 6px;
   }
 
   .brand-title {
-    font-size: 17px;
+    font-size: 15px;
+    letter-spacing: 1.2px;
+  }
+
+  .brand-subtitle {
+    font-size: 6.5px;
+    letter-spacing: 0.8px;
+  }
+}
+
+/* Сверхкомпактные экраны (<= 340px) */
+@media (max-width: 340px) {
+  .hero-heading {
+    font-size: 28px;
   }
 
   .hero-metrics-bar {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
